@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -116,6 +118,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         if (id == R.id.action_logout) {
             ParseUser.logOut();
             navigateToLogin();
+        } else if (id == R.id.action_edit_friends){
+            Intent intent = new Intent(this, EditFriendsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
